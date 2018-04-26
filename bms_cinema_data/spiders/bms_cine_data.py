@@ -41,11 +41,10 @@ class BmsCineDataSpider(scrapy.Spider):
             elif "Rgn=" in cookie:
                 cookie_dict['Rgn'] = cookie.split(';')[0].split('=')[1]
 
-        web_service_url = web_service_url.format(id)
+        web_service_url = web_service_url.format(cookie_dict['mqttsid'])
 
         yield response.follow(web_service_url, callback=self.fetching_cine_data, cookies=cookie_dict)
 
-        # yield scrapy.Request(newURL, callback=self.fetching_cine_data, cookies={'Rgn': Rgn, 'mqttuid':id}) #, cookies = response.headers.getlist("Set-Cookie")
 
     def fetching_cine_data(self, response):
         import json
