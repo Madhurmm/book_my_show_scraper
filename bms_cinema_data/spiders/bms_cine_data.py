@@ -20,6 +20,10 @@ def read_json(self, path):
 
 
 class BmsCineDataSpider(scrapy.Spider):
+    custom_settings = {
+        'DOWNLOAD_DELAY': 1
+    }
+
     name = 'bms_cine_data'
     allowed_domains = ['bookmyshow.com']
     list_region_code = read_file('bms_cinema_data/data/', 'bms_region.txt')
